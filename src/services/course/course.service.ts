@@ -20,17 +20,22 @@ export class CourseService {
         return this.courses.find((el:Course) => el.id === Number(id));
     }
 
-    create(body:any) {
+    create(createCourseDto:any) {
+        this.courses.push(createCourseDto);
         return "Curso criado!";
     }
 
-    update(id:string) {
-        this.courses.find((el:Course) => el.id === Number(id));
+    update(id:string, updateCourseDto:any) {
+        const indexCourse = this.courses.findIndex((course:Course) => course.id === Number(id));
+        this.courses[indexCourse] = updateCourseDto;
         return `Curso ${id} alterado!`;
     }
 
     delete(id:string) {
-        this.courses.find((el:Course) => el.id === Number(id));
+        const indexCourse = this.courses.findIndex((course:Course) => course.id === Number(id));
+        if (indexCourse > 0) {
+            this.courses.splice(indexCourse, 1);
+        }
         return `Curso ${id} excluído!`;
     }
 }
