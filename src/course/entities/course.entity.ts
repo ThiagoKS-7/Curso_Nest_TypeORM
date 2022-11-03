@@ -1,6 +1,14 @@
+import { IsString,IsNumber } from "class-validator";
 export class Course {
-    id: number;
-    name: string;
-    description: string;
-    tags: string[];
+    @IsNumber()
+    readonly id?: number;
+
+    @IsString()
+    readonly name?: string;
+
+    @IsString()
+    readonly description?: string;
+
+    @IsString()
+    readonly tags?: string[];
 }
